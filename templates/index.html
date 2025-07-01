@@ -1,0 +1,208 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algo Trading System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container py-4">
+        <header class="text-center mb-5">
+            <h1 class="display-4">Automated Trading System</h1>
+            <p class="lead">Algorithmic trading with ML predictions</p>
+        </header>
+        
+        <div class="card shadow-lg mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">System Controls</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-3">
+                    <button id="runBtn" class="btn btn-success btn-lg">Run Backtest</button>
+                    <div class="progress mt-2" style="height: 25px;">
+                        <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+                    </div>
+                    <div id="statusMessage" class="alert alert-info mt-3">Ready to start backtest</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Real-time Signals</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="signals" class="list-group">
+                            <div class="list-group-item">RELIANCE: BUY (RSI 28)</div>
+                            <div class="list-group-item">HDFCBANK: HOLD</div>
+                            <div class="list-group-item">INFY: SELL (RSI 72)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">Performance Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="summary">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Stock</th>
+                                        <th>PNL</th>
+                                        <th>Win Rate</th>
+                                        <th>Accuracy</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultsTable">
+                                    <tr>
+                                        <td colspan="4" class="text-center">No results yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-5 text-center text-muted">
+            <p>Algo Trading System &copy; 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const runBtn = document.getElementById("runBtn");
+            const progressBar = document.getElementById("progressBar");
+            const statusMessage = document.getElementById("statusMessage");
+            const resultsTable = document.getElementById("resultsTable");
+            
+            runBtn.addEventListener("click", async () => {
+                runBtn.disabled = true;
+                statusMessage.textContent = "Starting backtest...";
+                statusMessage.className = "alert alert-info";
+                
+                try {
+                    const response = await fetch('/run-backtest', { method: 'POST' });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Start checking status
+                        checkBacktestStatus();
+                    } else {
+                        statusMessage.textContent = `Error: ${result.error || 'Unknown error'}`;
+                        statusMessage.className = "alert alert-danger";
+                        runBtn.disabled = false;
+                    }
+                } catch (error) {
+                    statusMessage.textContent = `Connection error: ${error.message}`;
+                    statusMessage.className = "alert alert-danger";
+                    runBtn.disabled = false;
+                }
+            });
+            
+            async function checkBacktestStatus() {
+                try {
+                    const response = await fetch('/backtest-status');
+                    const status = await response.json();
+                    
+                    // Update UI
+                    progressBar.style.width = `${status.progress}%`;
+                    progressBar.textContent = `${status.progress}%`;
+                    statusMessage.textContent = status.message;
+                    
+                    if (status.running) {
+                        setTimeout(checkBacktestStatus, 2000);
+                    } else {
+                        // Update results when finished
+                        updateResults();
+                        runBtn.disabled = false;
+                    }
+                } catch (error) {
+                    statusMessage.textContent = `Status check failed: ${error.message}`;
+                    statusMessage.className = "alert alert-danger";
+                    runBtn.disabled = false;
+                }
+            }
+
+            async function checkBacktestStatus() {
+    try {
+        const response = await fetch('/backtest-status');
+        const status = await response.json();
+        
+        // Update progress bar
+        progressBar.style.width = `${status.progress}%`;
+        progressBar.textContent = `${status.progress}%`;
+        statusMessage.textContent = status.message;
+        
+        // Update results table if available
+        if (status.results.length > 0) {
+            updateResultsTable(status.results);
+        }
+        
+        if (status.running) {
+            setTimeout(checkBacktestStatus, 1000);
+        } else {
+            runBtn.disabled = false;
+        }
+    } catch (error) {
+        statusMessage.textContent = `Status check failed: ${error.message}`;
+        statusMessage.className = "alert alert-danger";
+        runBtn.disabled = false;
+    }
+}
+
+function updateResultsTable(results) {
+    let tableHTML = '';
+    results.forEach(stock => {
+        const pnlClass = stock.pnl >= 0 ? 'text-success' : 'text-danger';
+        tableHTML += `
+            <tr>
+                <td>${stock.symbol}</td>
+                <td class="${pnlClass}">₹${stock.pnl.toLocaleString()}</td>
+                <td>${(stock.win_ratio * 100).toFixed(2)}%</td>
+                <td>${(stock.accuracy * 100).toFixed(2)}%</td>
+            </tr>
+        `;
+    });
+    document.getElementById("resultsTable").innerHTML = tableHTML;
+}
+
+            
+            async function updateResults() {
+                try {
+                    const response = await fetch('/get-results');
+                    const results = await response.json();
+                    
+                    if (results.length > 0) {
+                        let tableHTML = '';
+                        results.forEach(stock => {
+                            const pnlClass = stock.pnl >= 0 ? 'text-success' : 'text-danger';
+                            tableHTML += `
+                                <tr>
+                                    <td>${stock.symbol}</td>
+                                    <td class="${pnlClass}">₹${stock.pnl.toLocaleString()}</td>
+                                    <td>${(stock.win_ratio * 100).toFixed(2)}%</td>
+                                    <td>${(stock.accuracy * 100).toFixed(2)}%</td>
+                                </tr>
+                            `;
+                        });
+                        resultsTable.innerHTML = tableHTML;
+                    }
+                } catch (error) {
+                    console.error("Error updating results:", error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
