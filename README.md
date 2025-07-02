@@ -133,17 +133,13 @@ graph TB
 <div align="center">
 
 ### 🖥️ Main Dashboard  
-<img src="![Screenshot 2025-07-01 221307](https://github.com/user-attachments/assets/a2354e7b-a912-4aae-aa22-58008152e05a)" alt="Live Trading Dashboard" width="768"/>
+<img src="![Screenshot 2025-07-01 221307](https://github.com/user-attachments/assets/85896625-7299-457c-bab9-ffe97ffcbef5)" alt="Dashboard" width="800"/>
 
----
+### 📈 Backtest Results  
+<img src="https://via.placeholder.com/800x400/388E3C/FFFFFF?text=Backtesting+Results+%26+Analytics" alt="Backtest Results" width="800"/>
 
-### 📈 Trading Signals & Performance  
-<img src="![Screenshot 2025-07-01 221909](https://github.com/user-attachments/assets/6c485b9f-ef52-4d1e-a791-722963c20324)" alt="Trading Signals and Performance Overview" width="823"/>
-
----
-
-### 📄 JSON Output Sample  
-<img src="![Screenshot 2025-07-01 223036](https://github.com/user-attachments/assets/9ce6363f-cb43-4f9d-8206-550ac974286a)" alt="JSON Output of Results" width="294"/>
+### 📱 Mobile Alerts  
+<img src="https://via.placeholder.com/400x600/FF5722/FFFFFF?text=Telegram+Mobile+Alerts" alt="Mobile Alerts" width="400"/>
 
 </div>
 
