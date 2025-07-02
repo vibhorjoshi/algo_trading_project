@@ -128,22 +128,12 @@ graph TB
 ```
 
 ---
-
-## 📊 Screenshots
-
-<div align="center">
-
-### 🖥️ Main Dashboard  
+🖥️ Main Dashboard
 <img src="https://via.placeholder.com/800x400/1976D2/FFFFFF?text=Interactive+Trading+Dashboard" alt="Dashboard" width="800"/>
-
-### 📈 Backtest Results  
+📈 Backtest Results
 <img src="https://via.placeholder.com/800x400/388E3C/FFFFFF?text=Backtesting+Results+%26+Analytics" alt="Backtest Results" width="800"/>
-
-### 📱 Mobile Alerts  
+📱 Mobile Alerts
 <img src="https://via.placeholder.com/400x600/FF5722/FFFFFF?text=Telegram+Mobile+Alerts" alt="Mobile Alerts" width="400"/>
-
-</div>
-
 ---
 
 ## 🚀 Quick Start
