@@ -128,20 +128,6 @@ graph TB
 ```
 
 ---
-## 📊 Screenshots
-
-<div align="center">
-
-### 🖥️ Main Dashboard  
-<img src="![Screenshot 2025-07-01 221307](https://github.com/user-attachments/assets/85896625-7299-457c-bab9-ffe97ffcbef5)" alt="Dashboard" width="800"/>
-
-### 📈 Backtest Results  
-<img src="https://via.placeholder.com/800x400/388E3C/FFFFFF?text=Backtesting+Results+%26+Analytics" alt="Backtest Results" width="800"/>
-
-### 📱 Mobile Alerts  
-<img src="https://via.placeholder.com/400x600/FF5722/FFFFFF?text=Telegram+Mobile+Alerts" alt="Mobile Alerts" width="400"/>
-
-</div>
 
 
 ## 🚀 Quick Start
