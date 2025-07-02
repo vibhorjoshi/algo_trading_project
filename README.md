@@ -133,17 +133,17 @@ graph TB
 <div align="center">
 
 ### 🖥️ Main Dashboard  
-<img src="assets/dashboard.png" alt="Live Trading Dashboard" width="768"/>
+<img src="![Screenshot 2025-07-01 221307](https://github.com/user-attachments/assets/a2354e7b-a912-4aae-aa22-58008152e05a)" alt="Live Trading Dashboard" width="768"/>
 
 ---
 
 ### 📈 Trading Signals & Performance  
-<img src="assets/signals_performance.png" alt="Trading Signals and Performance Overview" width="823"/>
+<img src="![Screenshot 2025-07-01 221909](https://github.com/user-attachments/assets/6c485b9f-ef52-4d1e-a791-722963c20324)" alt="Trading Signals and Performance Overview" width="823"/>
 
 ---
 
 ### 📄 JSON Output Sample  
-<img src="assets/json_output.png" alt="JSON Output of Results" width="294"/>
+<img src="![Screenshot 2025-07-01 223036](https://github.com/user-attachments/assets/9ce6363f-cb43-4f9d-8206-550ac974286a)" alt="JSON Output of Results" width="294"/>
 
 </div>
 
