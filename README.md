@@ -133,19 +133,20 @@ graph TB
 <div align="center">
 
 ### 🖥️ Main Dashboard  
-<img src="https://via.placeholder.com/800x400/1976D2/FFFFFF?text=Interactive+Trading+Dashboard" alt="Interactive Trading Dashboard" width="800"/>
+<img src="assets/dashboard.png" alt="Live Trading Dashboard" width="768"/>
 
 ---
 
-### 📈 Backtest Results  
-<img src="https://via.placeholder.com/800x400/388E3C/FFFFFF?text=Backtesting+Results+%26+Analytics" alt="Backtest Results & Analytics" width="800"/>
+### 📈 Trading Signals & Performance  
+<img src="assets/signals_performance.png" alt="Trading Signals and Performance Overview" width="823"/>
 
 ---
 
-### 📱 Mobile Alerts  
-<img src="https://via.placeholder.com/400x600/FF5722/FFFFFF?text=Telegram+Mobile+Alerts" alt="Telegram Mobile Alerts" width="400"/>
+### 📄 JSON Output Sample  
+<img src="assets/json_output.png" alt="JSON Output of Results" width="294"/>
 
 </div>
+
 
 ## 🚀 Quick Start
 
